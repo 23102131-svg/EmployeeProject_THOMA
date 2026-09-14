@@ -2,38 +2,34 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package Version1;
+package version2;
 
 /**
  *
  * @author User
  */
-public class BasePlusCommissionEmployee {
+public class CommissionEmployee {
 
     private int empID;
     private String empName;
     private double totalSale;
-    private double baseSalary;
 
-    public BasePlusCommissionEmployee() {
+    public CommissionEmployee() {
         this.empID = 0;
         this.empName = "N/A";
         this.totalSale = 0.0;
-        this.baseSalary = 0.0;
     }
 
-    public BasePlusCommissionEmployee(int empID, String empName) {
+    public CommissionEmployee(int empID, String empName) {
         this.empID = empID;
         this.empName = empName;
         this.totalSale = 0.0;
-        this.baseSalary = 0.0;
     }
 
-    public BasePlusCommissionEmployee(int empID, String empName, double totalSale, double baseSalary) {
+    public CommissionEmployee(int empID, String empName, double totalSale) {
         this.empID = empID;
         this.empName = empName;
         this.totalSale = totalSale;
-        this.baseSalary = baseSalary;
     }
 
     public int getEmpID() {
@@ -60,14 +56,6 @@ public class BasePlusCommissionEmployee {
         this.totalSale = totalSale;
     }
 
-    public double getBaseSalary() {
-        return baseSalary;
-    }
-
-    public void setBaseSalary(double baseSalary) {
-        this.baseSalary = baseSalary;
-    }
-
     public double getCommissionRate() {
         if (totalSale < 50000) {
             return 0.05;
@@ -81,17 +69,17 @@ public class BasePlusCommissionEmployee {
     }
 
     public double computeSalary() {
-        return baseSalary + (totalSale * getCommissionRate());
+        return totalSale * getCommissionRate();
     }
 
-    public void displayBasePlusCommissionEmployee() {
-        System.out.printf("ID: %d | Name: %s | Total Sales: ₱%,.2f | Base Salary: ₱%,.2f\n", empID, empName, totalSale, baseSalary);
+    public void displayCommissionEmployee() {
+        System.out.printf("ID: %d | Name: %s | Total Sales: ₱%,.2f\n", empID, empName, totalSale);
     }
 
     @Override
     public String toString() {
-        return String.format("BasePlusCommissionEmployee [ID: %d, Name: %s, Sales: ₱%,.2f, Base Salary: ₱%,.2f, Rate Applied: %.0f%%, Total Salary: ₱%,.2f]",
-                empID, empName, totalSale, baseSalary, getCommissionRate() * 100, computeSalary());
+        return String.format("CommissionEmployee [ID: %d, Name: %s, Sales: ₱%,.2f, Rate: %.0f%%, Total Salary: ₱%,.2f]",
+                empID, empName, totalSale, getCommissionRate() * 100, computeSalary());
     }
 }
 

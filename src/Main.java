@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Main.java to edit this template
  */
-package Version1;
+package version2;
 
 /**
  *
@@ -70,6 +70,12 @@ public class Main {
         System.out.print("[displayBasePlusCommissionEmployee()] ");
         b2.displayBasePlusCommissionEmployee();
         System.out.println("[toString()] " + b2);
+
+        MyDate today = new MyDate;
+        today.setDate(16);
+        today.setMonth(2);
+        today.setYear(2026);
+
     }
 }
 

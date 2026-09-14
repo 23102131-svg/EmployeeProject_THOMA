@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package Version1;
+package version2;
 
 /**
  *
@@ -13,8 +13,25 @@ public class HourlyEmployee {
     private String empName;
     private float totalHoursWorked;
     private double ratePerHour;
+    private int BirthDate;
+    private int HireDate;
 
 
+    public int getHireDate() {
+        return HireDate;
+    }
+
+    public void setHireDate(int hireDate) {
+        HireDate = hireDate;
+    }
+
+    public int getBirthDate() {
+        return BirthDate;
+    }
+
+    public void setBirthDate(int birthDate) {
+        BirthDate = birthDate;
+    }
 
     public HourlyEmployee(){
         this.empID = 0;
