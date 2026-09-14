@@ -1,15 +1,75 @@
-//TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
-// click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
-public class Main {
-    public static void main(String[] args) {
-        //TIP Press <shortcut actionId="ShowIntentionActions"/> with your caret at the highlighted text
-        // to see how IntelliJ IDEA suggests fixing it.
-        System.out.printf("Hello and welcome!");
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Main.java to edit this template
+ */
+package Version1;
 
-        for (int i = 1; i <= 5; i++) {
-            //TIP Press <shortcut actionId="Debug"/> to start debugging your code. We have set one <icon src="AllIcons.Debugger.Db_set_breakpoint"/> breakpoint
-            // for you, but you can always add more by pressing <shortcut actionId="ToggleLineBreakpoint"/>.
-            System.out.println("i = " + i);
-        }
+/**
+ *
+ * @author User
+ */
+public class Main {
+
+    public static void main(String[] args) {
+
+        HourlyEmployee h1 = new HourlyEmployee();
+        h1.setEmpID(101);
+        h1.setEmpName("Alice Smith");
+        h1.setTotalHoursWorked(45.0f);
+        h1.setRatePerHour(200.0);
+
+        HourlyEmployee h2 = new HourlyEmployee(102, "John Doe", 38.0f, 250.0);
+
+        System.out.println("--- Hourly Employee Test ---");
+        System.out.print("[displayHourlyEmployee()] ");
+        h1.displayHourlyEmployee();
+        System.out.println("[toString()] " + h1);
+        System.out.print("[displayHourlyEmployee()] ");
+        h2.displayHourlyEmployee();
+        System.out.println("[toString()] " + h2);
+
+        PieceWorkerEmployee p1 = new PieceWorkerEmployee(201, "Bob Jones");
+        p1.setTotalPiecesFinished(250);
+        p1.setRatePerPiece(15.0);
+
+        PieceWorkerEmployee p2 = new PieceWorkerEmployee(202, "Emma Watson", 120, 20.0);
+
+        System.out.println("\n--- Piece Worker Employee Test ---");
+        System.out.print("[displayPieceWorkerEmployee()] ");
+        p1.displayPieceWorkerEmployee();
+        System.out.println("[toString()] " + p1);
+        System.out.print("[displayPieceWorkerEmployee()] ");
+        p2.displayPieceWorkerEmployee();
+        System.out.println("[toString()] " + p2);
+
+        CommissionEmployee c1 = new CommissionEmployee();
+        c1.setEmpID(301);
+        c1.setEmpName("Charlie Brown");
+        c1.setTotalSale(75000.0);
+
+        CommissionEmployee c2 = new CommissionEmployee(302, "Diana Prince", 520000.0);
+
+        System.out.println("\n--- Commission Employee Test ---");
+        System.out.print("[displayCommissionEmployee()] ");
+        c1.displayCommissionEmployee();
+        System.out.println("[toString()] " + c1);
+        System.out.print("[displayCommissionEmployee()] ");
+        c2.displayCommissionEmployee();
+        System.out.println("[toString()] " + c2);
+
+        BasePlusCommissionEmployee b1 = new BasePlusCommissionEmployee(401, "Ethan Hunt");
+        b1.setTotalSale(120000.0);
+        b1.setBaseSalary(15000.0);
+
+        BasePlusCommissionEmployee b2 = new BasePlusCommissionEmployee(402, "Fiona Gallagher", 30000.0, 10000.0);
+
+        System.out.println("\n--- Base Plus Commission Employee Test ---");
+        System.out.print("[displayBasePlusCommissionEmployee()] ");
+        b1.displayBasePlusCommissionEmployee();
+        System.out.println("[toString()] " + b1);
+        System.out.print("[displayBasePlusCommissionEmployee()] ");
+        b2.displayBasePlusCommissionEmployee();
+        System.out.println("[toString()] " + b2);
     }
 }
+
