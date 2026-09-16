@@ -2,13 +2,13 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package version2;
+package version3;
 
 /**
  *
  * @author User
  */
-public class PieceWorkerEmployee {
+public class PieceWorkerEmployee extends Employee{
 
     private int empID;
     private Name empName;

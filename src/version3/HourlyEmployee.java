@@ -1,8 +1,8 @@
 
-package version2;
+package version3;
 
 
-public class HourlyEmployee {
+public class HourlyEmployee extends Employee{
     private int empID;
     private Name empName;
     private float totalHoursWorked;
