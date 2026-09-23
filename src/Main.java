@@ -1,84 +1,75 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Main.java to edit this template
- */
-package version3;
+package version5;
 
-/**
- *
- * @author User
- */
 public class Main {
 
     public static void main(String[] args) {
 
-        int currentMonth = MyDate.today().getMonth();
+        System.out.println("======================================================================");
+        System.out.println("DYNAMIC ROSTER INITIALIZATION (ArrayList Backend)");
+        System.out.println("======================================================================");
 
-        HourlyEmployee h1 = new HourlyEmployee();
-        h1.setEmpID(101);
-        h1.setEmpName(new Name("Alice", "Smith"));
-        h1.setTotalHoursWorked(45.0f);
-        h1.setRatePerHour(200.0);
-        h1.setBirthDate(new MyDate(12, currentMonth, 1995));
 
-        HourlyEmployee h2 = new HourlyEmployee(102, new Name("John", "Doe"), 38.0f, 250.0);
-        h2.setBirthDate(new MyDate(3, 6, 1990));
+        EmployeeRoster roster = new EmployeeRoster();
 
-        System.out.println("--- Hourly Employee Test ---");
-        System.out.print("[displayHourlyEmployee()] ");
-        h1.displayHourlyEmployee();
-        System.out.println("[toString()] " + h1);
-        System.out.print("[displayHourlyEmployee()] ");
-        h2.displayHourlyEmployee();
-        System.out.println("[toString()] " + h2);
+        HourlyEmployee alice = new HourlyEmployee(101, new Name("Alice", "M.", "Smith"), 45f, 300.0);
+        alice.setBirthDate(new MyDate(15, 9, 1995)); // September birthday
 
-        PieceWorkerEmployee p1 = new PieceWorkerEmployee(201, new Name("Bob", "Jones"));
-        p1.setTotalPiecesFinished(250);
-        p1.setRatePerPiece(15.0);
-        p1.setBirthDate(new MyDate(20, currentMonth, 1988));
+        PieceWorkerEmployee bob = new PieceWorkerEmployee(201, new Name("Bob", "C.", "Jones Jr."), 135, 30.0);
+        bob.setBirthDate(new MyDate(5, 6, 1998));
 
-        PieceWorkerEmployee p2 = new PieceWorkerEmployee(202, new Name("Emma", "Watson"), 120, 20.0);
+        CommissionEmployee maria = new CommissionEmployee(301, new Name("Maria", "L.", "Reyes"), 100000.0);
+        maria.setBirthDate(new MyDate(3, 9, 1990)); // September birthday
 
-        System.out.println("\n--- Piece Worker Employee Test ---");
-        System.out.print("[displayPieceWorkerEmployee()] ");
-        p1.displayPieceWorkerEmployee();
-        System.out.println("[toString()] " + p1);
-        System.out.print("[displayPieceWorkerEmployee()] ");
-        p2.displayPieceWorkerEmployee();
-        System.out.println("[toString()] " + p2);
+        BasePlusCommissionEmployee kevin = new BasePlusCommissionEmployee(401, new Name("Kevin", "S.", "Tan"), 100000.0, 15000.0);
+        kevin.setBirthDate(new MyDate(10, 3, 1992));
 
-        CommissionEmployee c1 = new CommissionEmployee();
-        c1.setEmpID(301);
-        c1.setEmpName(new Name("Charlie", "Brown"));
-        c1.setTotalSale(75000.0);
+        HourlyEmployee david = new HourlyEmployee(102, new Name("David", "A.", "White"), 40f, 200.0);
+        david.setBirthDate(new MyDate(1, 12, 1988));
 
-        CommissionEmployee c2 = new CommissionEmployee(302, new Name("Diana", "Prince"), 520000.0);
-        c2.setBirthDate(new MyDate(5, currentMonth, 1992));
+        PieceWorkerEmployee grace = new PieceWorkerEmployee(202, new Name("Grace", "T.", "Lim"), 80, 25.0);
+        grace.setBirthDate(new MyDate(20, 1, 2000));
 
-        System.out.println("\n--- Commission Employee Test ---");
-        System.out.print("[displayCommissionEmployee()] ");
-        c1.displayCommissionEmployee();
-        System.out.println("[toString()] " + c1);
-        System.out.print("[displayCommissionEmployee()] ");
-        c2.displayCommissionEmployee();
-        System.out.println("[toString()] " + c2);
+        enroll(roster, alice, "Smith, Alice M.", "Hourly");
+        enroll(roster, bob, "Jones Jr., Bob C.", "Piece Worker");
+        enroll(roster, maria, "Reyes, Maria L.", "Commission");
+        enroll(roster, kevin, "Tan, Kevin S.", "Base Plus Commission");
+        enroll(roster, david, "White, David A.", "Hourly");
+        enroll(roster, grace, "Lim, Grace T.", "Piece Worker");
 
-        BasePlusCommissionEmployee b1 = new BasePlusCommissionEmployee(401, new Name("Ethan", "Hunt"));
-        b1.setTotalSale(120000.0);
-        b1.setBaseSalary(15000.0);
+        System.out.println();
+        System.out.println("--- ROSTER COMPOSITION COUNTS ---");
+        System.out.println("Total Employees: " + roster.countEmployees());
+        System.out.println("Hourly Employees: " + roster.countHE());
+        System.out.println("Piece Worker Employees: " + roster.countPWE());
+        System.out.println("Commission Employees (Pure): " + roster.countCE());
+        System.out.println("Base Plus Commission Employees: " + roster.countBPCE());
 
-        BasePlusCommissionEmployee b2 = new BasePlusCommissionEmployee(402, new Name("Fiona", "Gallagher"), 30000.0, 10000.0);
-        b2.setBirthDate(new MyDate(28, currentMonth, 1985));
 
-        System.out.println("\n--- Base Plus Commission Employee Test ---");
-        System.out.print("[displayBasePlusCommissionEmployee()] ");
-        b1.displayBasePlusCommissionEmployee();
-        System.out.println("[toString()] " + b1);
-        System.out.print("[displayBasePlusCommissionEmployee()] ");
-        b2.displayBasePlusCommissionEmployee();
-        System.out.println("[toString()] " + b2);
+        System.out.println();
+        System.out.println("======================================================================");
+        System.out.println("DYNAMIC POLYMORPHISM: PAYROLL VIA emp.computeSalary(currentMonth)");
+        System.out.println("======================================================================");
+        roster.displayPayroll(9);
 
-        MyDate today = MyDate.today();
-        System.out.println("\nToday's date: " + today);
+  
+        System.out.println();
+        System.out.println("======================================================================");
+        System.out.println("COLLECTION REMOVAL VERIFICATION");
+        System.out.println("======================================================================");
+        int before = roster.countEmployees();
+        Employee removed = roster.removeEmployee(201);
+        System.out.println("Removing Employee ID 201 (Jones Jr., Bob C.)... "
+                + (removed != null ? "Successfully removed." : "Not found."));
+        System.out.println("Size before: " + before + " -> Size after: " + roster.countEmployees());
+
+        System.out.println();
+        System.out.println("Remaining Employees in Roster:");
+        roster.displayAllEmployees();
+        System.out.println("======================================================================");
+    }
+
+    private static void enroll(EmployeeRoster roster, Employee emp, String displayName, String type) {
+        boolean ok = roster.addEmployee(emp);
+        System.out.println((ok ? "Enrolled: " : "Failed to enroll: ") + displayName + " (" + type + ")");
     }
 }

@@ -2,43 +2,39 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package version3;
+package version4;
 
 /**
  *
  * @author User
  */
-public class BasePlusCommissionEmployee extends Employee{
+public class CommissionEmployee extends Employee {
 
     private int empID;
     private Name empName;
     private double totalSale;
-    private double baseSalary;
     private MyDate birthDate;
 
     public static final double BIRTHDAY_BONUS = 5000.0;
 
-    public BasePlusCommissionEmployee() {
+    public CommissionEmployee() {
         this.empID = 0;
         this.empName = new Name();
         this.totalSale = 0.0;
-        this.baseSalary = 0.0;
         this.birthDate = new MyDate();
     }
 
-    public BasePlusCommissionEmployee(int empID, Name empName) {
+    public CommissionEmployee(int empID, Name empName) {
         this.empID = empID;
         this.empName = empName;
         this.totalSale = 0.0;
-        this.baseSalary = 0.0;
         this.birthDate = new MyDate();
     }
 
-    public BasePlusCommissionEmployee(int empID, Name empName, double totalSale, double baseSalary) {
+    public CommissionEmployee(int empID, Name empName, double totalSale) {
         this.empID = empID;
         this.empName = empName;
         this.totalSale = totalSale;
-        this.baseSalary = baseSalary;
         this.birthDate = new MyDate();
     }
 
@@ -66,14 +62,6 @@ public class BasePlusCommissionEmployee extends Employee{
         this.totalSale = totalSale;
     }
 
-    public double getBaseSalary() {
-        return baseSalary;
-    }
-
-    public void setBaseSalary(double baseSalary) {
-        this.baseSalary = baseSalary;
-    }
-
     public MyDate getBirthDate() {
         return birthDate;
     }
@@ -99,21 +87,31 @@ public class BasePlusCommissionEmployee extends Employee{
     }
 
     public double computeSalary() {
-        double salary = baseSalary + (totalSale * getCommissionRate());
+        double salary = totalSale * getCommissionRate();
         if (isBirthdayMonth()) {
             salary += BIRTHDAY_BONUS;
         }
         return salary;
     }
 
-    public void displayBasePlusCommissionEmployee() {
-        System.out.printf("ID: %d | Name: %s | Total Sales: ₱%,.2f | Base Salary: ₱%,.2f\n", empID, empName, totalSale, baseSalary);
+    // Overload used by EmployeeRoster.displayPayroll(int) so the birthday-bonus
+    // check is made against the simulated payroll month instead of the real clock.
+    public double computeSalary(int month) {
+        double salary = totalSale * getCommissionRate();
+        if (birthDate.getMonth() == month) {
+            salary += BIRTHDAY_BONUS;
+        }
+        return salary;
+    }
+
+    public void displayCommissionEmployee() {
+        System.out.printf("ID: %d | Name: %s | Total Sales: ₱%,.2f\n", empID, empName, totalSale);
     }
 
     @Override
     public String toString() {
         String bonusNote = isBirthdayMonth() ? " (+₱5,000 birthday bonus)" : "";
-        return String.format("BasePlusCommissionEmployee [ID: %d, Name: %s, Sales: ₱%,.2f, Base Salary: ₱%,.2f, Rate Applied: %.0f%%, Total Salary: ₱%,.2f%s]",
-                empID, empName, totalSale, baseSalary, getCommissionRate() * 100, computeSalary(), bonusNote);
+        return String.format("CommissionEmployee [ID: %d, Name: %s, Sales: ₱%,.2f, Rate: %.0f%%, Total Salary: ₱%,.2f%s]",
+                empID, empName, totalSale, getCommissionRate() * 100, computeSalary(), bonusNote);
     }
 }

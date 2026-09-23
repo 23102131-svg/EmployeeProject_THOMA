@@ -2,13 +2,13 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package version3;
+package version4;
 
 /**
  *
  * @author User
  */
-public class BasePlusCommissionEmployee extends Employee{
+public class BasePlusCommissionEmployee extends CommissionEmployee {
 
     private int empID;
     private Name empName;
@@ -101,6 +101,16 @@ public class BasePlusCommissionEmployee extends Employee{
     public double computeSalary() {
         double salary = baseSalary + (totalSale * getCommissionRate());
         if (isBirthdayMonth()) {
+            salary += BIRTHDAY_BONUS;
+        }
+        return salary;
+    }
+
+    // Overload used by EmployeeRoster.displayPayroll(int) so the birthday-bonus
+    // check is made against the simulated payroll month instead of the real clock.
+    public double computeSalary(int month) {
+        double salary = baseSalary + (totalSale * getCommissionRate());
+        if (birthDate.getMonth() == month) {
             salary += BIRTHDAY_BONUS;
         }
         return salary;

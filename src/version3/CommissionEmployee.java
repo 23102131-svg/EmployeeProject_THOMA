@@ -8,7 +8,7 @@ package version3;
  *
  * @author User
  */
-public class CommissionEmployee {
+public class CommissionEmployee extends Employee{
 
     private int empID;
     private Name empName;
